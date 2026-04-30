@@ -29,6 +29,10 @@ Two layers in one file, communicating over SSE:
 
    Markdown is rendered with `marked` + `highlight.js` from CDN. Conversation history and session id are persisted in `localStorage` (`claude_history`, `claude_session`); "New chat" clears both.
 
+## Persona overlay
+
+The server passes a hardcoded `--append-system-prompt PERSONA` to every `claude -p` invocation. `PERSONA` is defined as a module-level constant in `claude_local.py` and gives the assistant a Japanese-schoolgirl character (Hinata Asagiri). It is appended (not replaced) so default tool-use instructions stay intact. The prompt explicitly tells the assistant to keep technical answers honest even when in-character.
+
 ## Things to know when editing
 
 - The HTML/CSS/JS lives inside the `INDEX_HTML` raw string in `claude_local.py`. There is no separate frontend.
