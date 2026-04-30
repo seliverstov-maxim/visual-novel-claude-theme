@@ -58,3 +58,7 @@ bin/setup          create .venv, install deps
 bin/run            start the server
 CLAUDE.md          notes for AI agents working in this repo
 ```
+
+## Credits
+
+Background image (`static/background.jpg`) is taken from a public source: [One. ~Kagayaku Kisetsu e~ review on vengilikes.wordpress.com](https://vengilikes.wordpress.com/2024/01/07/one-review/). All rights belong to the original authors.
