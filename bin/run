@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Start the Claude Local server (uvicorn with --reload).
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+if [ ! -x .venv/bin/python ]; then
+  echo ".venv not found. Run bin/setup first." >&2
+  exit 1
+fi
+
+exec .venv/bin/python claude_local.py

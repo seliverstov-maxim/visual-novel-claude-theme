@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Create local venv and install runtime deps.
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "python3 not found in PATH" >&2
+  exit 1
+fi
+
+if [ ! -d .venv ]; then
+  echo "Creating .venv..."
+  python3 -m venv .venv
+fi
+
+echo "Installing dependencies..."
+.venv/bin/pip install --quiet --upgrade pip
+.venv/bin/pip install --quiet fastapi uvicorn
+
+if [ ! -f static/background.jpg ]; then
+  echo "Downloading background image..."
+  mkdir -p static
+  curl -fSL -o static/background.jpg \
+    "https://vengilikes.wordpress.com/wp-content/uploads/2024/01/one-1.jpg"
+fi
+
+echo "Setup complete. Start the server with: bin/run"

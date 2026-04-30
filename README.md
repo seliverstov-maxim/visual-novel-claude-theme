@@ -7,6 +7,8 @@ Features:
 - Sidebar with chat history — multiple conversations, each with its own context.
 - Server hot-reload on file changes (`uvicorn --reload`).
 
+![Claude Local UI](example.png)
+
 ## Requirements
 
 - Python 3.10+
