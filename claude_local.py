@@ -222,6 +222,21 @@ INDEX_HTML = r"""<!doctype html>
     flex: 1; overflow-y: auto; padding: 24px 20px 8px;
   }
   .msg { max-width: 760px; margin: 0 auto 24px; }
+  .msg.assistant {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .msg.assistant .avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid #000;
+    margin-top: 2px;
+    background: #000;
+  }
+  .msg.assistant .body { flex: 1; min-width: 0; }
   .role {
     font-size: 11px; color: var(--muted); margin-bottom: 6px;
     font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px;
@@ -453,7 +468,11 @@ function renderChatList() {
 function addMessageDom(role) {
   const wrap = document.createElement('div');
   wrap.className = `msg ${role}`;
-  wrap.innerHTML = `<div class="role">${role}</div><div class="body"></div>`;
+  if (role === 'assistant') {
+    wrap.innerHTML = `<img class="avatar" src="/static/avatar.png" alt="Hinata" title="Hinata"><div class="body"></div>`;
+  } else {
+    wrap.innerHTML = `<div class="role">${role}</div><div class="body"></div>`;
+  }
   $messages.appendChild(wrap);
   $messages.scrollTop = $messages.scrollHeight;
   return wrap.querySelector('.body');
